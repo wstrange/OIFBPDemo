@@ -3,6 +3,9 @@
 
 <h1>Complete Registration</h1>
 
+<p>Welcome ${uid}</p>
+
+
 <p>You are almost done, but we need a little more Information to complete your registration!</p>
 
 #{if flash.error}
@@ -11,9 +14,9 @@
     </p>
 #{/if}
 
-<p>Welcome ${uid}</p>
 
-<p>We need to know your TELUS mobility cell phone number</p>
+<p>Please complete your profile below</p>
+
 
 #{form @Application.updateUserInfo(name,cell)}
   
@@ -22,15 +25,31 @@
         <input type="text" name="uid" id="uid" value="${uid}" />
     </p> 
     
-    <p>
-        <label for="cell">Your cell phone: </label>
-        <input type="text" name="cell" id="cell" value="${cell}"/>
-    </p>  
-    <p>
+   
+    <input type="hidden" name="refId" id="refId" value="${refId}"/>
+  
+    
+    <p>The following fields need to be updated in your profile: ${missing}</p>
+    
+    <table>
+    
+	%{
+     for(field in missing.tokenize(",")) { 
+	 }%
+	 <tr>
+	 <td>${field}</td> <td>  <input type="text" name="ldap-${field}" id="ldap.${field}"/> </td>
+	 </tr>
+	%{
+     }
+	}%
+
+    
+    </table>
+    
+     <p>
         <input type="submit" value="Submit" />
     </p>
-    <input type="hidden" name="redirectURL" id="redirectURL" value="${redirectURL}"/>
 #{/form}
 
-<p> redirectURL is ${redirectURL} </p>
+
 
