@@ -1,4 +1,3 @@
-
 <h1>Oracle Identity Federation - OIF Workflow callout example</h1>
 
 A simple Play! Application that demonstrates how Oracle Identity Federation (OIF) 
@@ -14,23 +13,26 @@ as GET parameters. The sample application updates the mobile attribute and passe
 
 You want to invoke the /completeRegistration URL with the following parameters:
 
-uid - the LDAP uid of the user logging in
-cell - the cell phone number of the user to update. For clarity the GET parameter is called "cell" to distinguish it from the ldap attribute called "mobile"
-		(helpfull when trying to understand the code..)
-redirectURL - The OIF URL to redirect back to once we have updated the users profile
-
+<ul>
+<li>uid - the LDAP uid of the user logging in</li>
+<li>cell - the cell phone number of the user to update. For clarity the GET parameter is called "cell" to distinguish it from the ldap attribute called "mobile"
+		(helpfull when trying to understand the code..)</li>
+<li>redirectURL - The OIF URL to redirect back to once we have updated the users profile</li>
+</ul>
 For example:    
 
 GET http://localhost:9010/OIFBPDemo/completeRegistration?uid=test1&cell=5551212&redirectURL=http://foo.com/fed/idp?blahblah
 
-TODO: Do we need to URLEncode the URL?
+TODO: Do we need to URLEncode the URL..?
 
 
 <h2>Running the example</h2>
 
-git clone xxxx
-# Edit conf/application.conf to set the port number, etc (default for the demo is 9010)
-# Edit Appplication.java to set the LDAP connection parameters (admin dn, password, search dn, etc.)
-# Run the app - assumes you have play! installed
+git clone git://github.com/wstrange/OIFBPDemo.git
+
+- Edit conf/application.conf to set the port number, etc (default for the demo is 9010)
+- Edit Appplication.java to set the LDAP connection parameters (admin dn, password, search dn, etc.)
+- Run the app - assumes you have play! installed
+
 play run 
 
