@@ -6,12 +6,12 @@ can call out to a custom application during a federation workflow.
 The OIF workflow callout provides a means to interact with the user during SSO. For example, to
  prompt them to agree to terms and conditions, complete additional required attributes (cell,birthdate, etc.). 
 
-Using workflow callouts avoids having to modify OIF itself. The application should interact with user and then pass control back to OIF upon completion.
+Using workflow callout avoids having to modify OIF itself. The application should interact with user and then pass control back to OIF upon completion.
  
 As part of the login process, OIF will call out to this application (via redirect) and pass the relevant attributes
 as GET parameters. The sample application updates the mobile attribute and passes control back to OIF via a redirect. 
 
-You want to invoke the /completeRegistration URL with the following parameters:
+You want to configure OIF to invoke the /completeRegistration URL with the following parameters:
 
 <ul>
 <li>uid - the LDAP uid of the user logging in</li>
