@@ -22,7 +22,8 @@ import com.unboundid.ldap.sdk.SearchScope;
 import models.*;
 
 public class Application extends Controller {
-	public static String BASEDN = "ou=People,dc=example,dc=com";
+	//public static String BASEDN = "ou=People,dc=example,dc=com";
+	public static String BASEDN = "dc=oracleateam,dc=com";
 	
 	public static String OIF_URL = "https://feddemo.oracleateam.com/fed/user";
 	
@@ -31,7 +32,8 @@ public class Application extends Controller {
 	public static LDAPConnection getConnection()  {
 		if( ldapConnection == null )
 			try {
-				ldapConnection = new LDAPConnection("localhost", 1389,"cn=Directory Manager", "password");
+				//ldapConnection = new LDAPConnection("localhost", 1389,"cn=Directory Manager", "password");
+				ldapConnection = new LDAPConnection("localhost", 3131, "cn=orcladmin", "password");
 			}
 			catch(Exception e) {
 				Logger.error("LDAP Problem", e);
