@@ -53,14 +53,14 @@ public class Application extends Controller {
      * 
      * @param uid the user id in ldap 
      * @param cell the users cell phone number 
-     * @param refId  OIF refernence id for the workflow
+     * @param refid  OIF refernence id for the workflow
      */
-    public static void completeRegistration(String uid,String missing,String refId) {
+    public static void completeRegistration(String uid,String missing,String refid) {
     	
     	List l = new ArrayList();
     	l.add("test");
     	renderArgs.put("testList", l);
-    	render(uid,missing,refId);
+    	render(uid,missing,refid);
     }
     
     /**
@@ -73,8 +73,8 @@ public class Application extends Controller {
      * @param missing - a csv list of the missing ldap attributes we need to prompt for
      * @param redirectURL -  the URL we should redirect to once we have updated the users profile
      */
-    public static void updateUserInfo(String uid,String missing,String refId) {
-    	Logger.info(" uid=" + uid + " refid=" + refId + " missing=" + missing);
+    public static void updateUserInfo(String uid,String missing,String refid) {
+    	Logger.info(" uid=" + uid + " refid=" + refid + " missing=" + missing);
     	
     	Map <String,String>p = request.params.allSimple();
     	
@@ -105,7 +105,7 @@ public class Application extends Controller {
     		}
     		else {
     			flash.error("Can't find user LDAP entry for uid"+ dn);
-    			completeRegistration("NoSuchUser"+uid,missing,refId);
+    			completeRegistration("NoSuchUser"+uid,missing,refid);
     		}
     		
     	}
@@ -113,11 +113,11 @@ public class Application extends Controller {
     		// shit happens
     		Logger.error(e,"Some LDAP error Happened %s", e.getMessage());	
     		flash.error("LDAP error=" + e.getMessage());
-    		completeRegistration("someuser",missing,refId);
+    		completeRegistration("someuser",missing,refid);
     	}
     	
     	
-    	String redirectURL = makeRedirectURL(refId);
+    	String redirectURL = makeRedirectURL(refid);
     	
     
     	

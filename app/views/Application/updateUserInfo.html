@@ -8,6 +8,7 @@
 <p>Updated attr for uid ${uid} - redirect URL is ${redirectURL}</p>
 
 <br/>
-<a href="/">Home</a>
+<a href="@{Application.index()}">Home</a>
 <br/>
-<a href="/completeRegistration?uid=test1&missing=mobile,sn&redirectURL=${redirectURL}">Back to Complete Registration Form</a>
+
+ <a href='@{Application.completeRegistration("testuser2","sn,mobile", "abcd124")}'>Complete Registration</a>

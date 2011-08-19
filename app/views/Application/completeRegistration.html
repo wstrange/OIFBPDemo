@@ -18,7 +18,7 @@
 <p>Please complete your profile below</p>
 
 
-#{form @Application.updateUserInfo(name,cell)}
+#{form @Application.updateUserInfo(uid,missing,refid)}
   
 	  <p>
         <label for="uid">Your user id: </label>
@@ -26,7 +26,7 @@
     </p> 
     
    
-    <input type="hidden" name="refId" id="refId" value="${refId}"/>
+    <input type="hidden" name="refid" id="refid" value="${refid}"/>
   
     
     <p>The following fields need to be updated in your profile: ${missing}</p>
