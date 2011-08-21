@@ -8,22 +8,20 @@ The OIF workflow callout provides a means to interact with the user during SSO. 
 
 Using workflow callout avoids having to modify OIF itself. The application should interact with user and then pass control back to OIF upon completion.
  
-As part of the login process, OIF will call out to this application (via redirect) and pass the relevant attributes
-as GET parameters. The sample application updates the mobile attribute and passes control back to OIF via a redirect. 
+As part of the login workflow, OIF will call out to this application (via redirect) and pass the missing attributes
+as GET parameters. The sample application prompt the user for the missing attributes and d passes control back to OIF via a redirect. 
 
 You want to configure OIF to invoke the /completeRegistration URL with the following parameters:
 
 <ul>
 <li>uid - the LDAP uid of the user logging in</li>
-<li>cell - the cell phone number of the user to update. For clarity the GET parameter is called "cell" to distinguish it from the ldap attribute called "mobile"
-		(helpfull when trying to understand the code..)</li>
-<li>redirectURL - The OIF URL to redirect back to once we have updated the users profile</li>
+<li>missing=att1,attr2,..  a csv list of missing ldap attributes</li>
+<li>refid - The OIF refid that correlates this to the current user workflow.</li>
 </ul>
 For example:    
 
-GET http://localhost:9010/OIFBPDemo/completeRegistration?uid=test1&cell=5551212&redirectURL=http://foo.com/fed/idp?blahblah
+GET http://localhost:9010/OIFBPDemo/completeRegistration?uid=test1&missing=mobile,sn&refid=2323453245hhx 
 
-TODO: Do we need to URLEncode the URL..?
 
 
 <h2>Running the example</h2>
