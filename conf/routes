@@ -2,10 +2,16 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+
+%{ctx = play.configuration.getProperty('apache.context', '') }% 
+
 # Home page
-GET     /                                       Application.index
-GET		/completeRegistration					Application.completeRegistration
-GET 	/updateUserInfo							Application.updateUserInfo
+#GET		/ 			Application.index
+GET     ${ctx}                                       Application.index
+GET		${ctx}/									Application.index
+GET		${ctx}/completeRegistration					Application.completeRegistration
+#GET		/completeRegistration					Application.completeRegistration
+GET 	${ctx}/updateUserInfo							Application.updateUserInfo
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
@@ -14,4 +20,5 @@ GET     /favicon.ico                            404
 GET     /public/                                staticDir:public
 
 # Catch all
-*       /{controller}/{action}                  {controller}.{action}
+#*       ${ctx}/{controller}/{action}                  {controller}.{action}
+*       ${ctx}/{controller}/{action}                  {controller}.{action}

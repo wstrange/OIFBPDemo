@@ -22,8 +22,8 @@ import com.unboundid.ldap.sdk.SearchScope;
 import models.*;
 
 public class Application extends Controller {
-	//public static String BASEDN = "ou=People,dc=example,dc=com";
-	public static String BASEDN = "dc=oracleateam,dc=com";
+	public static String BASEDN = "ou=People,dc=example,dc=com";
+	//public static String BASEDN = "cn=Users,dc=oracleateam,dc=com";
 	
 	public static String OIF_URL = "https://feddemo.oracleateam.com/fed/user";
 	
@@ -32,8 +32,8 @@ public class Application extends Controller {
 	public static LDAPConnection getConnection()  {
 		if( ldapConnection == null )
 			try {
-				//ldapConnection = new LDAPConnection("localhost", 1389,"cn=Directory Manager", "password");
-				ldapConnection = new LDAPConnection("localhost", 3131, "cn=orcladmin", "password");
+				ldapConnection = new LDAPConnection("localhost", 1389,"cn=Directory Manager", "password");
+				//ldapConnection = new LDAPConnection("localhost", 3060, "cn=orcladmin", "password");
 			}
 			catch(Exception e) {
 				Logger.error("LDAP Problem", e);
@@ -55,11 +55,7 @@ public class Application extends Controller {
      * @param cell the users cell phone number 
      * @param refid  OIF refernence id for the workflow
      */
-    public static void completeRegistration(String uid,String missing,String refid) {
-    	
-    	List l = new ArrayList();
-    	l.add("test");
-    	renderArgs.put("testList", l);
+    public static void completeRegistration(String uid,String missing,String refid) {  	
     	render(uid,missing,refid);
     }
     
@@ -87,7 +83,8 @@ public class Application extends Controller {
 		Logger.info("Got a LDAP connection");
 		
     	
-    	try {		 		
+    	try {	
+    		// TODO: Should really search via uid 
     		SearchResultEntry entry = ldap.getEntry(dn);
     		
     		Logger.info("Got user ldap Entry=" + entry);
@@ -103,6 +100,7 @@ public class Application extends Controller {
 	    			}				
 	    		}
     		}
+    		
     		else {
     			flash.error("Can't find user LDAP entry for uid"+ dn);
     			completeRegistration("NoSuchUser"+uid,missing,refid);
